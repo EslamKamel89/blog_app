@@ -26,6 +26,10 @@
 
     @include( 'layouts.partials.header' )
 
+    @isset( $heroSection )
+		<div>{{$heroSection}}</div>
+	@endisset
+
     <main class="container mx-auto px-5 flex flex-grow">
         {{ $slot }}
     </main>

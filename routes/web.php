@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
-Route::get( '/', function () {
-	return view( 'welcome' );
+Route::get( '/', HomeController::class);
+Route::get( '/test', function () {
+	$post = Post::find( 1 );
+	dump( $post->categories );
 } );
 
 Route::middleware( [
