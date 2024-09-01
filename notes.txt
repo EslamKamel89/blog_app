@@ -1,0 +1,4 @@
+>> Roles
+    1- Member / User
+    2- Editor (can create post or create category)
+    3- Admin (do anything)

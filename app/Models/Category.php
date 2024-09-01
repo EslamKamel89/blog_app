@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model {
 	use HasFactory;
-	protected $fillable = [ 
+	protected $fillable = [
 		'title',
 		'slug',
 		'text_color',
 		'bg_color',
 	];
+	//! Relationship
 	public function posts(): BelongsToMany {
 		return $this->belongsToMany( Post::class);
 	}

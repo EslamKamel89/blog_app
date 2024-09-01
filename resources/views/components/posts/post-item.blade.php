@@ -2,7 +2,7 @@
     <div class="article-body grid grid-cols-12 gap-3 mt-5 items-start">
         <div class="article-thumbnail col-span-4 flex items-center">
             <a href="#">
-                <img class="mw-100 mx-auto rounded-xl" src="{{$post->image}}" alt="thumbnail">
+                <img class="mw-100 mx-auto rounded-xl" src="{{$post->getThumbnailImage()}}" alt="thumbnail">
             </a>
         </div>
         <div class="col-span-8">
@@ -22,10 +22,16 @@
                 {{ $post->getExcerpt() }}
             </p>
             <div class="article-actions-bar mt-6 flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <span class="text-gray-500 text-sm">{{ $post->timeToRead() }} min read</span>
+                <div class="flex items-center space-x-1">
+                    @foreach ( $post->categories as $category )
+						<x-common.badge href="{{route( 'posts.index', [ 'category' => $category->title ] )}}" wire:navigate
+							:textColor="$category->text_color" :bgColor="$category->bg_color">
+							{{ $category->title }}
+						</x-common.badge>
+					@endforeach
                 </div>
                 <div>
+                    <span class="text-gray-500 text-sm">{{ $post->timeToRead() }} min read</span>
                     <a class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6 text-gray-600 hover:text-gray-900">

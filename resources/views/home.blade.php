@@ -28,8 +28,8 @@
                 </div>
             </div>
             <!-- END Featured Posts Grid -->
-            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold"
-                href="http://127.0.0.1:8000/blog">More
+            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold" href="http://127.0.0.1:8000/blog"
+                wire:navigate>More
                 Posts</a>
             <hr>
         </div>
@@ -49,8 +49,8 @@
                 </div>
             </div>
             <!-- END Latest Posts Grid -->
-            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold"
-                href="http://127.0.0.1:8000/blog">More
+            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold" href="http://127.0.0.1:8000/blog"
+                wire:navigate>More
                 Posts</a>
         </div>
         <!-- END Latest Posts -->

@@ -10,6 +10,7 @@ class HomeController extends Controller {
 	public function __invoke( Request $request ) {
 		return view( 'home', [
 			'featuredPosts' => Post::featured()
+				// ->where( 'title', 'like', '%Nulla%' )
 				->published()
 				->latest( 'published_at' )
 				->get(),
