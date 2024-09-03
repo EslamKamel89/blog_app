@@ -31,6 +31,9 @@ class Post extends Model {
 	public function author() {
 		return $this->belongsTo( User::class, 'user_id' );
 	}
+	public function likes(): BelongsToMany {
+		return $this->belongsToMany( User::class, 'post_like' );
+	}
 
 	//! Scopes
 	public function scopePublished( Builder $query ) {

@@ -8,14 +8,13 @@ wire:click="clearSearch()"
             >x</button>
             @endif
             @if ($category)
-                <span>All Posts from  </span>
                 <x-common.badge
                     href="{{route( 'posts.index', [ 'category' => $category ] )}}" wire:navigate>
                     {{$category}}
                 </x-common.badge>
                 @endif
             @if ($search)
-                <span> Contains {{$search}}</span>
+                <span> containing: <span class="font-bold ml-2">{{$search}}</span> </span>
             @endif
         </div>
         <div class="flex items-center space-x-4 font-light ">
