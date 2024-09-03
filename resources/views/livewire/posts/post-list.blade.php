@@ -4,8 +4,9 @@
         <div>
             @if($search || $category)
             <button class="text-2xl font-bold mr-2"
-wire:click="clearSearch()"
-            >x</button>
+            wire:click="clearSearch()">
+                x
+            </button>
             @endif
             @if ($category)
                 <x-common.badge

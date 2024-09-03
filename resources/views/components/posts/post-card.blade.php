@@ -9,10 +9,7 @@
             <div class="flex flex-wrap gap-1 max-w-sm">
 
                 @foreach ( $post->categories as $category )
-					<x-common.badge :textColor="$category->text_color" :bgColor="$category->bg_color"
-						href="{{route( 'posts.index', [ 'category' => $category->title ] )}}" wire:navigate>
-						{{$category->title}}
-					</x-common.badge>
+					<x-common.category-badge :category="$category" />
 				@endforeach
             </div>
             <p class="text-gray-500 text-sm">{{$post->published_at}}</p>

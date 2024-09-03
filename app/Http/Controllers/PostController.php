@@ -20,4 +20,7 @@ class PostController extends Controller {
 				->take( 10 )->get()
 		] );
 	}
+	public function show( Post $post ) {
+		return view( 'posts.show', compact( 'post' ) );
+	}
 }
