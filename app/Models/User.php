@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -23,7 +24,7 @@ class User extends Authenticatable {
 	 *
 	 * @var array<int, string>
 	 */
-	protected $fillable = [
+	protected $fillable = [ 
 		'name',
 		'email',
 		'password',
@@ -34,7 +35,7 @@ class User extends Authenticatable {
 	 *
 	 * @var array<int, string>
 	 */
-	protected $hidden = [
+	protected $hidden = [ 
 		'password',
 		'remember_token',
 		'two_factor_recovery_codes',
@@ -46,7 +47,7 @@ class User extends Authenticatable {
 	 *
 	 * @var array<int, string>
 	 */
-	protected $appends = [
+	protected $appends = [ 
 		'profile_photo_url',
 	];
 
@@ -56,7 +57,7 @@ class User extends Authenticatable {
 	 * @return array<string, string>
 	 */
 	protected function casts(): array {
-		return [
+		return [ 
 			'email_verified_at' => 'datetime',
 			'password' => 'hashed',
 		];
@@ -66,5 +67,8 @@ class User extends Authenticatable {
 	public function likes(): BelongsToMany {
 		return $this->belongsToMany( Post::class, 'post_like' )
 			->withTimestamps();
+	}
+	public function comments(): HasMany {
+		return $this->hasMany( Comment::class);
 	}
 }
