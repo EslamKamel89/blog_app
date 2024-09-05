@@ -20,6 +20,11 @@
             @guest
 				@include( 'layouts.partials.header-right-guest' )
 			@endguest
+            @if ( auth()->user()?->isAdmin() || auth()->user()?->isEditor() )
+				<x-nav-link navigate="{{ false}}" href="{{ route( 'filament.admin.pages.dashboard' ) }}">
+					{{ __( 'Admin Panel' ) }}
+				</x-nav-link>
+			@endif
             @auth
 				@include( 'layouts.partials.header-right-auth' )
 			@endauth

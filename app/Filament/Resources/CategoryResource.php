@@ -26,9 +26,9 @@ class CategoryResource extends Resource {
 
 	public static function form( Form $form ): Form {
 		return $form
-			->schema( [ 
+			->schema( [
 				Section::make( 'Category' )
-					->schema( [ 
+					->schema( [
 						TextInput::make( 'title' )
 							->afterStateUpdated( function (Get $get, Set $set, string $operation) {
 								if ( $operation != 'edit' ) {
@@ -54,7 +54,7 @@ class CategoryResource extends Resource {
 
 	public static function table( Table $table ): Table {
 		return $table
-			->columns( [ 
+			->columns( [
 				TextColumn::make( 'title' )
 					->label( 'Title' )
 					->searchable()
@@ -78,12 +78,14 @@ class CategoryResource extends Resource {
 			->filters( [
 				//
 			] )
-			->actions( [ 
+			->actions( [
 				Tables\Actions\EditAction::make(),
+				Tables\Actions\DeleteAction::make(),
 			] )
-			->bulkActions( [ 
-				Tables\Actions\BulkActionGroup::make( [ 
-					Tables\Actions\DeleteBulkAction::make(),
+			->bulkActions( [
+				Tables\Actions\BulkActionGroup::make( [
+					Tables\Actions\DeleteBulkAction::make()
+						->disabled( auth()->user()->isNotAdmin() ),
 				] ),
 			] );
 	}
@@ -95,7 +97,7 @@ class CategoryResource extends Resource {
 	}
 
 	public static function getPages(): array {
-		return [ 
+		return [
 			'index' => Pages\ListCategories::route( '/' ),
 			'create' => Pages\CreateCategory::route( '/create' ),
 			'edit' => Pages\EditCategory::route( '/{record}/edit' ),

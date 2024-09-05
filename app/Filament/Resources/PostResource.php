@@ -118,9 +118,12 @@ class PostResource extends Resource {
 			] )
 			->bulkActions( [
 				Tables\Actions\BulkActionGroup::make( [
-					Tables\Actions\DeleteBulkAction::make(),
-					Tables\Actions\ForceDeleteBulkAction::make(),
-					Tables\Actions\RestoreBulkAction::make(),
+					Tables\Actions\DeleteBulkAction::make()
+						->disabled( auth()->user()->isNotAdmin() ),
+					Tables\Actions\ForceDeleteBulkAction::make()
+						->disabled( auth()->user()->isNotAdmin() ),
+					Tables\Actions\RestoreBulkAction::make()
+						->disabled( auth()->user()->isNotAdmin() ),
 				] ),
 			] );
 	}
