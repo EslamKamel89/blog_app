@@ -18,8 +18,11 @@ class PostList extends Component {
 	public $search = '';
 	#[Url ]
 	public $category = '';
+	#[Url ]
+	public $popular = false;
 
 	public function setSort( $sort ) {
+		// dump( $sort );
 		$this->sort = $sort;
 		$this->resetPage();
 	}
@@ -28,7 +31,10 @@ class PostList extends Component {
 	public function posts() {
 		return Post::
 			where( 'title', 'like', '%' . $this->search . '%' )
-			->withCategroy( category: $this->category )
+			->when(
+				$this->popular,
+				fn( Builder $query ) => $query->popular(),
+			)->withCategroy( category: $this->category )
 			->orderBy(
 				'published_at',
 				$this->sort === 'desc' ? 'desc' : 'asc'

@@ -51,6 +51,13 @@ class Post extends Model {
 			$query->where( 'title', 'like', '%' . $category . '%' );
 		} );
 	}
+	public function scopePopular( Builder $query ) {
+		return $query->withCount( 'likes' )->orderBy( 'likes_count', 'desc' );
+	}
+	public function scopeSearch( Builder $query, $search = '' ) {
+		return $query->where( 'title', 'like', '%' . $search . '%' );
+	}
+
 
 	//! Casts
 	protected function casts(): array {

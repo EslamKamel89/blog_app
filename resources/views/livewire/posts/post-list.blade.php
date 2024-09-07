@@ -8,7 +8,7 @@
                 x
             </button>
             @endif
-            @if ($category)
+            @if ($category )
                 <x-common.badge
                     href="{{route( 'posts.index', [ 'category' => $category ] )}}" wire:navigate>
                     {{$category}}
@@ -19,10 +19,13 @@
             @endif
         </div>
         <div class="flex items-center space-x-4 font-light ">
-            <button class="text-gray-500 py-4 " wire:click="setSort('desc')"
+            <x-checkbox wire:model.live="popular" class="text-yellow-600 shadow-sm focus:ring-yellow-500" />
+            <span class="text-gray-500 py-4">Popular</span>
+            <div class="h-5 border-l-2 border-gray-500"></div>
+            <button class="text-gray-500 py-4 " wire:key="desc" wire:click="setSort('desc'); console.log('desc')"
                 :class="{'border-b border-gray-700' : $wire.sort=='desc'}">Latest</button>
-            <button class="text-gray-900 py-4" wire:click="setSort('asc')"
-                :class="{'border-b border-gray-700' : $wire.sort!='desc'}">Oldest</button>
+            <button class="text-gray-900 py-4" wire:key="asc" wire:click="setSort('asc')"
+                :class="{'border-b border-gray-700' : $wire.sort !='desc'};console.log('asc')">Oldest</button>
         </div>
     </div>
     <div class="py-4">
