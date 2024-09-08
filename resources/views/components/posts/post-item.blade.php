@@ -26,7 +26,7 @@
 
                 <div>
                     <span class="text-gray-500 text-sm">{{ $post->timeToRead() }} min read</span>
-                    <livewire:common.like-button :key="$post->id" :$post />
+                    <livewire:common.like-button key="{{ $post->id }}. ' Like Button'" :$post />
                 </div>
             </div>
         </div>

@@ -29,8 +29,8 @@ class PostList extends Component {
 
 	#[Computed ]
 	public function posts() {
-		return Post::
-			where( 'title', 'like', '%' . $this->search . '%' )
+		return Post::with( [ 'author', 'comments', 'categories' ] )
+			->where( 'title', 'like', '%' . $this->search . '%' )
 			->when(
 				$this->popular,
 				fn( Builder $query ) => $query->popular(),
